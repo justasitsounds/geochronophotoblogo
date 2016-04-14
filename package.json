@@ -1,0 +1,29 @@
+{
+  "name": "geochronophotoblogo",
+  "version": "1.0.0",
+  "description": "photo blog incorporating navigation by time and location",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+github.com/justasitsounds/geochronophotoblogo.git"
+  },
+  "keywords": [
+    "travel",
+    "photo",
+    "blog"
+  ],
+  "author": "james prendergast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justasitsounds/geochronophotoblogo/issues"
+  },
+  "homepage": "https://github.com/justasitsounds/geochronophotoblogo#readme"
+}
