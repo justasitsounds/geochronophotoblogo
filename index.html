@@ -1,11 +1,61 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html>
 	<head>
 		<title>GeoPhotoChronoBlog-o</title>
-		<script src="bundle.js"></script>
+        <style type="text/css">
+        .subunit { fill:#999; }
+        .subunit.Arizona { fill:#33f; } 
+        .subunit.Nevada { fill:#f66; }
+        .tester { position:absolute; width:500px;top:150px;left:50%;margin-left:-250px;padding:12px;border:1px solid #36f;z-index:1000; }
+
+        </style>
 	</head>
 	<body>
-		<h1>GeoPhotoChronoBlog-o</h1>	
+        <div class="tester"><h1>GeoPhotoChronoBlog-o</h1>
+            <p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p> 
+        </div>
+        <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="//d3js.org/topojson.v1.min.js"></script>
+        <script>
+            var width = 960,
+                height = 1160;
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            d3.json("mapdata/new_world.json", function(err, usa){
+                if(err) return console.error(err);
+
+                var countries = usa.objects.americas;
+                var states = usa.objects.american_states;
+                countries.geometries = countries.geometries.concat(states.geometries)
+                var subunits = topojson.feature(usa, countries);
+
+                var projection = d3.geo.mercator()
+                    .scale(300)
+                    .translate([width, height/2]);
+
+                var path = d3.geo.path()
+                    .projection(projection);
+
+                svg.append("path")
+                    .datum(subunits)
+                    .attr("d", path);
+                
+                var iterateObj = function(obj){
+                    for (var prop in obj) {
+                          console.log("obj." + prop + " = " + obj[prop]);
+                    }
+                };
+                svg.selectAll(".subunit")
+                    .data(subunits.features)
+                    .enter().append("path")
+                    .on("mouseover",function(o,d,i){ iterateObj(o); console.log(d3.event); })
+                    .attr("class", function(d) { return "subunit " + d.id; })
+                    .attr("d", path);
+            });
+        </script>
 	</body>
 </html>
-

@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "photo blog incorporating navigation by time and location",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "uniq": "^1.0.1"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
